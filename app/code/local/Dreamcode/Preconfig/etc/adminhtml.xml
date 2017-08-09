@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

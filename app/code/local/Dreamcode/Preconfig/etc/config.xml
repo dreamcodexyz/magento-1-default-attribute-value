@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Dreamcode_Preconfig>
+            <version>0.3.0</version>
+        </Dreamcode_Preconfig>
+    </modules>
+    <frontend>
+        <events>
+            <catalog_controller_product_init_after>
+                <observers>
+                    <preconfig_configurablepreselect>
+                            <class>dcpreconfig/observer</class>
+                            <method>preSelectConfigurable</method>
+                    </preconfig_configurablepreselect>
+                </observers>
+            </catalog_controller_product_init_after>
+        </events>
+    </frontend>
+
+    <adminhtml>
+        <!-- <layout>
+            <updates>
+                <preconfig>
+                    <file>dcpreconfig.xml</file>
+                </preconfig>
+            </updates>
+        </layout> -->
+        <events>
+            <catalog_product_prepare_save>
+                <observers>
+                    <dcpreconfig_observer>
+                        <class>dcpreconfig/observer</class>
+                        <method>prepareProductSave</method>
+                    </dcpreconfig_observer>
+                </observers>
+            </catalog_product_prepare_save>
+        </events>
+    </adminhtml>
+
+    <global>
+        <models>
+            <dcpreconfig>
+                <class>Dreamcode_Preconfig_Model</class>
+                <resourceModel>preconfig_mysql4</resourceModel>
+            </dcpreconfig>
+            <preconfig_mysql4>
+                <class>Dreamcode_Preconfig_Model_Mysql4</class>
+                <entities>
+                    <preconfigvalue>
+                        <table>dc_preconfig_value</table>
+                    </preconfigvalue>
+                </entities>
+            </preconfig_mysql4>
+        </models>
+
+        <resources>
+            <preconfig_setup>
+                <setup>
+                    <module>Dreamcode_Preconfig</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </preconfig_setup>
+            <preconfig_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </preconfig_write>
+            <preconfig_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </preconfig_read>
+        </resources>
+
+        <helpers>
+            <dreamcodepreconfig>
+                <class>Dreamcode_Preconfig_Helper</class>
+            </dreamcodepreconfig>
+        </helpers>
+
+        <blocks>
+            <dcpreconfig>
+                <class>Dreamcode_Preconfig_Block</class>
+            </dcpreconfig>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_edit_tab_super_config>Dreamcode_Preconfig_Block_Catalog_Product_Edit_Tab_Super_Config</catalog_product_edit_tab_super_config>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+    </global>
+
+</config>
